@@ -1,0 +1,15 @@
+[package]
+name = "rustacean-review"
+version = "0.1.0"
+authors = ["Transmissions <greenfeatherhelp@gmail.com>"]
+edition = "2018"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+ferris_print = "0.1.0"
+
+[dependencies.cursive]
+version = "0.13"
+default-features = false
+features = ["termion-backend"]
