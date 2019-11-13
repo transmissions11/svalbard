@@ -1,27 +1,25 @@
-use cursive::align::HAlign;
-use cursive::event::EventResult;
-use cursive::traits::*;
-use cursive::view::IntoBoxedView;
-use cursive::views::{Dialog, OnEventView, SelectView, TextView};
 use cursive::Cursive;
+use cursive::theme::{BaseColor, BorderStyle, Color, Palette, PaletteColor, Theme};
+use cursive::traits::*;
+use cursive::views::{Dialog, OnEventView, SelectView, TextView};
 
 struct State {
-    chaptersReviewed: u32,
+    reviews: Vec<u8>
 }
 
-fn profiencyPrompt(cursive: &mut Cursive) {
-    let value = cursive.user_data::<State>().unwrap().chaptersReviewed;
+fn profiency_prompt(cursive: &mut Cursive) {
+    let count = cursive.user_data::<State>().unwrap().reviews.len() + 1;
 
     let mut select = SelectView::new();
-    for i in 1..10 {
+    for i in 1..11 {
         select.add_item(i.to_string(), i.to_string());
     }
     select.set_on_submit(show_next_window);
 
     cursive.add_layer(
         Dialog::around(select.scrollable().fixed_size((20, 10))).title(format!(
-            "What's your confidence level on the Chapter {}?",
-            value
+            "What's your confidence level on Chapter {}?",
+            count
         )),
     );
 }
@@ -29,11 +27,21 @@ fn profiencyPrompt(cursive: &mut Cursive) {
 fn main() {
     let mut cursive = Cursive::default();
 
+    // Theme
+    let mut palette = Palette::default();
+
+    palette[PaletteColor::Background] = Color::Rgb(59, 104, 55);
+    palette[PaletteColor::View] = Color::Rgb(247, 246, 230);
+    palette[PaletteColor::HighlightInactive] = Color::Dark(BaseColor::Red);
+
+    cursive.set_theme(Theme { shadow: true, borders: BorderStyle::Simple, palette: palette });
+
+    // Actual start
     cursive.set_user_data(State {
-        chaptersReviewed: 1,
+        reviews: Vec::new(),
     });
 
-    profiencyPrompt(&mut cursive);
+    profiency_prompt(&mut cursive);
 
     cursive.run();
 }
@@ -41,24 +49,34 @@ fn main() {
 fn show_next_window(cursive: &mut Cursive, result: &str) {
     cursive.pop_layer();
 
-    let text = format!("{} is pretty good for a beginner!", result);
+    let mut chapters_reviewed = 0;
 
-    let value = cursive.user_data::<State>().unwrap();
+    cursive.with_user_data(|state: &mut State| {
+        state.reviews.push(result.parse().unwrap());
+        chapters_reviewed = state.reviews.len();
+    });
 
-    value.chaptersReviewed += 1;
-
-    let text = format!("{} is pretty good for a beginner!", value.chaptersReviewed);
-
-    if value.chaptersReviewed == 10 {
-
-        cursive.add_layer(Dialog::text("Ayy!"));
-    } else {
+    if chapters_reviewed != 10 {
         cursive.add_layer(
-            Dialog::text(text)
+            Dialog::text(format!("{} is pretty good for a beginner!", result))
                 .button("Continue", |button_cursive| {
-                    profiencyPrompt(button_cursive);
+                    profiency_prompt(button_cursive);
                 })
                 .button("Quit", |s| s.quit()),
+        );
+    } else {
+        let final_state: State = cursive.take_user_data().unwrap();
+
+        let mut select = SelectView::new();
+
+
+        for (chap_num, score) in final_state.reviews.iter().enumerate() {
+            select.add_item(format!("Chapter {}: {}/10", chap_num, score), "");
+        }
+
+        cursive.add_layer(
+            Dialog::around(select).title("Here's your breakdown of each Chapter!")
+                .button("Next Cycle", |button_cursive| {}),
         );
     }
 }
