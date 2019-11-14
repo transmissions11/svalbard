@@ -6,7 +6,6 @@ edition = "2018"
 description = "Helps you keep track of how well you know each chapter in the Rust book."
 license = "MIT"
 repository = "https://github.com/TransmissionsDev/rustacean-review"
-homepage = "crows.sh"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
