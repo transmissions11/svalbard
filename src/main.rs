@@ -2,6 +2,8 @@ use cursive::Cursive;
 use cursive::theme::{BaseColor, BorderStyle, Color, Palette, PaletteColor, Theme};
 use cursive::traits::*;
 use cursive::views::{Dialog, OnEventView, SelectView, TextView};
+#[macro_use]
+extern crate ferris_print;
 
 struct State {
     reviews: Vec<u8>
@@ -25,25 +27,36 @@ fn profiency_prompt(cursive: &mut Cursive) {
 }
 
 fn main() {
-    let mut cursive = Cursive::default();
+    let result: State = {
+        let mut cursive = Cursive::default();
 
-    // Theme
-    let mut palette = Palette::default();
+        // Theme
+        let mut palette = Palette::default();
 
-    palette[PaletteColor::Background] = Color::Rgb(59, 104, 55);
-    palette[PaletteColor::View] = Color::Rgb(247, 246, 230);
-    palette[PaletteColor::HighlightInactive] = Color::Dark(BaseColor::Red);
+        palette[PaletteColor::Background] = Color::Rgb(59, 104, 55);
+        palette[PaletteColor::View] = Color::Rgb(247, 246, 230);
+        palette[PaletteColor::HighlightInactive] = Color::Dark(BaseColor::Red);
 
-    cursive.set_theme(Theme { shadow: true, borders: BorderStyle::Simple, palette: palette });
+        cursive.set_theme(Theme { shadow: true, borders: BorderStyle::Simple, palette });
 
-    // Actual start
-    cursive.set_user_data(State {
-        reviews: Vec::new(),
-    });
+        // Actual start
+        cursive.set_user_data(State {
+            reviews: Vec::new(),
+        });
 
-    profiency_prompt(&mut cursive);
+        profiency_prompt(&mut cursive);
 
-    cursive.run();
+        cursive.run();
+
+       cursive.take_user_data().unwrap()
+    };
+
+    if (result.reviews.len() > 0) {
+        println!("{} is your ranking for the first chapter!", result.reviews.get(0).unwrap());
+    } else {
+        ferrisprint!("Come back soon! :D");
+    }
+
 }
 
 fn show_next_window(cursive: &mut Cursive, result: &str) {
@@ -65,13 +78,12 @@ fn show_next_window(cursive: &mut Cursive, result: &str) {
                 .button("Quit", |s| s.quit()),
         );
     } else {
-        let final_state: State = cursive.take_user_data().unwrap();
+        let final_state = cursive.user_data::<State>().unwrap();
 
         let mut select = SelectView::new();
 
-
         for (chap_num, score) in final_state.reviews.iter().enumerate() {
-            select.add_item(format!("Chapter {}: {}/10", chap_num, score), "");
+            select.add_item(format!("Chapter {}: {}/10", chap_num + 1, score), "");
         }
 
         cursive.add_layer(
