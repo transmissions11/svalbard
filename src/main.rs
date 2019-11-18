@@ -1,7 +1,9 @@
 use cursive::menu::MenuTree;
 use cursive::views::Dialog;
 use cursive::{Cursive, With};
-use rustacean_review::screens::{proficiency_prompt, summary_screen, search_screen, recommend_review};
+use rustacean_review::screens::{
+    proficiency_prompt, recommend_review, search_screen, summary_screen,
+};
 use rustacean_review::state::deserialize_state;
 use rustacean_review::{State, CHAPTERS};
 use std::collections::HashMap;
@@ -64,7 +66,9 @@ fn main() {
                     ),
             )
             .add_delimiter()
-            .add_leaf("About", |s| s.add_layer(Dialog::info("A t11s project. First Rust project.")))
+            .add_leaf("About", |s| {
+                s.add_layer(Dialog::info("A t11s project. First Rust project."))
+            })
             .add_leaf("Quit", |s| s.quit());
 
         cursive.set_autohide_menu(false);

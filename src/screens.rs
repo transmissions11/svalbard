@@ -1,6 +1,6 @@
 //! Has functions to display different screens to the user of the cursive TUI.
 use crate::state::serialize_state;
-use crate::{find_chapter_index, State, CHAPTERS, smallest_value_in_hashmap};
+use crate::{find_chapter_index, smallest_value_in_hashmap, State, CHAPTERS};
 use cursive::traits::{Boxable, Scrollable};
 use cursive::views::{Dialog, EditView, SelectView};
 use cursive::Cursive;
