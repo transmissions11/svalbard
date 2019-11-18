@@ -2,7 +2,6 @@ use cursive::traits::{Boxable, Scrollable};
 use cursive::views::{Dialog, EditView, SelectView};
 use serde::{Deserialize, Serialize};
 use std::collections::HashMap;
-use std::os::macos::raw::stat;
 
 /// Stores the State of the program and the user's data. Gets serialized after every change.
 #[derive(Serialize, Deserialize)]
