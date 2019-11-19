@@ -35,7 +35,7 @@ fn get_config_file() -> String {
 
 #[cfg(test)]
 mod tests {
-    use crate::state::{deserialize_state, serialize_state, get_config_file};
+    use crate::state::{deserialize_state, get_config_file, serialize_state};
     use crate::State;
     use std::collections::HashMap;
 
@@ -45,7 +45,11 @@ mod tests {
 
         assert!(config_file.contains("rustacean-review-state"));
 
-        assert!(config_file.contains("share") || config_file.contains("Library") || config_file.contains("AppData"));
+        assert!(
+            config_file.contains("share")
+                || config_file.contains("Library")
+                || config_file.contains("AppData")
+        );
     }
 
     #[test]
