@@ -37,16 +37,18 @@ pub fn summary_screen(cursive: &mut Cursive) {
 
     for (index, chapter) in CHAPTERS.iter().enumerate() {
         if let Some(review) = state.reviews.get(&index) {
-            select.add_item(format!("{}: {}/10", chapter, review), "");
+            select.add_item(format!("{}: {}/10", chapter, review), index);
         }
     }
-
     cursive.add_layer(
-        Dialog::around(select)
-            .title("Here's a summary of your learning:")
-            .button("Ok", |button_cursive| {
-                button_cursive.pop_layer();
-            }),
+        Dialog::around(select.on_submit(|cursive, chapter_index| {
+            cursive.pop_layer();
+            proficiency_prompt(cursive, *chapter_index);
+        }))
+        .title("Here's a summary of your learning:")
+        .button("Ok", |button_cursive| {
+            button_cursive.pop_layer();
+        }),
     );
 }
 

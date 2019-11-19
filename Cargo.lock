@@ -516,7 +516,7 @@ dependencies = [
 
 [[package]]
 name = "rustacean-review"
-version = "2.0.0"
+version = "2.1.0"
 dependencies = [
  "cursive 0.13.0 (registry+https://github.com/rust-lang/crates.io-index)",
  "dirs 2.0.2 (registry+https://github.com/rust-lang/crates.io-index)",

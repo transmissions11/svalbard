@@ -1,6 +1,6 @@
 [package]
 name = "rustacean-review"
-version = "2.0.0"
+version = "2.1.0"
 authors = ["Transmissions <greenfeatherhelp@gmail.com>"]
 edition = "2018"
 description = "Helps you keep track of how well you know each chapter in the Rust book."
