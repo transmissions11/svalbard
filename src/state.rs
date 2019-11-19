@@ -1,5 +1,6 @@
 //! Has functions used to serialize and deserialize the program state
-use crate::{State, STATE_FILE_NAME};
+use crate::State;
+use dirs::data_dir;
 use serde_json::Result;
 use std::fs;
 
@@ -10,13 +11,13 @@ use std::fs;
 pub fn serialize_state(data: &State) {
     let json = serde_json::to_string(data).unwrap();
 
-    fs::write(STATE_FILE_NAME, json).unwrap();
+    fs::write(get_config_file(), json).unwrap();
 }
 
 /// Used to get saved state on program run.
 /// Should not panic if file does not exist, returns `None` instead.
 pub fn deserialize_state() -> Result<State> {
-    let data = match fs::read_to_string(STATE_FILE_NAME) {
+    let data = match fs::read_to_string(get_config_file()) {
         Err(_) => String::from(""),
         Ok(string) => string,
     };
@@ -24,11 +25,28 @@ pub fn deserialize_state() -> Result<State> {
     serde_json::from_str(data.as_str())
 }
 
+/// Used to get the user's config file relative to their data directory
+fn get_config_file() -> String {
+    let mut config_file_dir = data_dir().unwrap();
+    config_file_dir.push("rustacean-review-state");
+
+    config_file_dir.to_string_lossy().to_string()
+}
+
 #[cfg(test)]
 mod tests {
-    use crate::state::{deserialize_state, serialize_state};
+    use crate::state::{deserialize_state, serialize_state, get_config_file};
     use crate::State;
     use std::collections::HashMap;
+
+    #[test]
+    fn config_file() {
+        let config_file = get_config_file();
+
+        assert!(config_file.contains("rustacean-review-state"));
+
+        assert!(config_file.contains("share") || config_file.contains("Library") || config_file.contains("AppData"));
+    }
 
     #[test]
     #[ignore]

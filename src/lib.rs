@@ -9,9 +9,6 @@ pub struct State {
     pub reviews: HashMap<usize, u8>,
 }
 
-/// Stores the name of the file where changes to `State` are serialized.
-pub const STATE_FILE_NAME: &str = "rustacean-review-state";
-
 /// Stores the name of all the rust book chapters. The indexes of each chapter string are refrenced throughout the program.
 pub const CHAPTERS: [&str; 97] = [
     "1. Getting Started",

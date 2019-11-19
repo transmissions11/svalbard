@@ -1,6 +1,6 @@
 [package]
 name = "rustacean-review"
-version = "1.0.1"
+version = "2.0.0"
 authors = ["Transmissions <greenfeatherhelp@gmail.com>"]
 edition = "2018"
 description = "Helps you keep track of how well you know each chapter in the Rust book."
@@ -12,6 +12,7 @@ repository = "https://github.com/TransmissionsDev/rustacean-review"
 [dependencies]
 ferris_print = "0.1.0"
 serde_json = "1.0.41"
+dirs = "2.0.2"
 serde = { version = "1.0", features = ["derive"] }
 
 [dependencies.cursive]
