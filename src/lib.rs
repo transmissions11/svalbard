@@ -15,15 +15,11 @@ pub struct ChapterInfo {
 }
 
 impl ChapterInfo {
-    fn chapter_recommendation_and_advice(&self) -> String {
-        let intro = "You should brush up on Chapter";
+    fn chapter_resources_string(&self) -> String {
         if self.extra_info.is_empty() {
-            format!(
-                "{} {}\n\nMake sure to look at the Rust by Example online book for some examples!",
-                intro, self.human_readable
-            )
+           String::from("Make sure to look at the Rust by Example online book for some examples!")
         } else {
-            format!("{} {}. Check out these helpful resources:\n\n{}", intro, self.human_readable, self.extra_info)
+            format!("Check out these helpful resources:\n\n{}", self.extra_info)
         }
     }
 }
