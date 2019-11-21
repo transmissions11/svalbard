@@ -2,7 +2,7 @@ use cursive::menu::MenuTree;
 use cursive::views::Dialog;
 use cursive::{Cursive, With};
 use rustacean_review::screens::{
-    proficiency_prompt, recommend_review, search_screen, summary_screen,
+	chapter_choice, recommend_review_screen, search_screen, summary_screen,
 };
 use rustacean_review::state::deserialize_state;
 use rustacean_review::{State, CHAPTERS};
@@ -48,7 +48,7 @@ fn main() {
                         summary_screen(cursive);
                     })
                     .leaf("Recommend Review", |cursive| {
-                        recommend_review(cursive);
+                        recommend_review_screen(cursive);
                     })
                     .leaf("Search for Chapter", |cursive| {
                         search_screen(cursive);
@@ -59,7 +59,7 @@ fn main() {
                         MenuTree::new().with(|tree| {
                             for (index, chapter) in CHAPTERS.iter().enumerate() {
                                 tree.add_leaf(chapter.human_readable, move |cursive| {
-                                    proficiency_prompt(cursive, index)
+                                    chapter_choice(cursive, index)
                                 });
                             }
                         }),
