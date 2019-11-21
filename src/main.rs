@@ -58,7 +58,7 @@ fn main() {
                         "Chapters",
                         MenuTree::new().with(|tree| {
                             for (index, chapter) in CHAPTERS.iter().enumerate() {
-                                tree.add_leaf(*chapter, move |cursive| {
+                                tree.add_leaf(chapter.human_readable, move |cursive| {
                                     proficiency_prompt(cursive, index)
                                 });
                             }

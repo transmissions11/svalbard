@@ -24,7 +24,7 @@ pub fn proficiency_prompt(cursive: &mut Cursive, chapter_num: usize) {
     cursive.add_layer(
         Dialog::around(select.scrollable().fixed_size((20, 10))).title(format!(
             "What's your confidence level on Chapter {}?",
-            CHAPTERS[chapter_num]
+            CHAPTERS[chapter_num].human_readable
         )),
     );
 }
@@ -37,7 +37,7 @@ pub fn summary_screen(cursive: &mut Cursive) {
 
     for (index, chapter) in CHAPTERS.iter().enumerate() {
         if let Some(review) = state.reviews.get(&index) {
-            select.add_item(format!("{}: {}/10", chapter, review), index);
+            select.add_item(format!("{}: {}/10", chapter.human_readable, review), index);
         }
     }
     cursive.add_layer(
@@ -57,12 +57,10 @@ pub fn recommend_review(cursive: &mut Cursive) {
     let state = cursive.user_data::<State>().unwrap();
 
     if let Some(recommended_chapter_index) = smallest_value_in_hashmap(&state.reviews) {
-        let recommended_chapter_name = CHAPTERS[recommended_chapter_index];
-
-        cursive.add_layer(Dialog::info(format!(
-            "You should brush up on Chapter {}\n\nMake sure to look at the Rust by Example online book for some examples!",
-            recommended_chapter_name
-        )));
+        let recommended_chapter = &CHAPTERS[recommended_chapter_index];
+        cursive.add_layer(Dialog::info(
+            recommended_chapter.chapter_recommendation_and_advice(),
+        ));
     } else {
         cursive.add_layer(Dialog::info("Review some chapters first!"));
     }
