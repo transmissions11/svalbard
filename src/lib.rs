@@ -15,7 +15,8 @@ pub struct ChapterInfo {
 }
 
 impl ChapterInfo {
-    fn chapter_resources_string(&self) -> String {
+    /// Used to get a human readable format of extra_info data associated with a ChapterInfo struct
+    pub fn chapter_resources_string(&self) -> String {
         if self.extra_info.is_empty() {
            String::from("Make sure to look at the Rust by Example online book for some examples!")
         } else {
@@ -24,7 +25,7 @@ impl ChapterInfo {
     }
 }
 
-/// Stores the name of all the rust book chapters. The indexes of each chapter string are refrenced throughout the program.
+/// Stores the name of all the rust book chapters. The indexes of each chapter string are referenced throughout the program.
 pub const CHAPTERS: [ChapterInfo; 97] = [
     ChapterInfo {
         human_readable: "1. Getting Started",
