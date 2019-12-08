@@ -1,11 +1,11 @@
 [package]
 name = "rustacean-review"
-version = "2.1.0"
+version = "2.2.0"
 authors = ["Transmissions <greenfeatherhelp@gmail.com>"]
 edition = "2018"
 description = "Helps you keep track of how well you know each chapter in the Rust book."
 license = "MIT"
-repository = "https://github.com/TransmissionsDev/rustacean-review"
+repository = "https://github.com/svalbard-library/svalbard"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
