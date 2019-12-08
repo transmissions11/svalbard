@@ -1,9 +1,9 @@
 [package]
-name = "rustacean-review"
-version = "2.2.0"
+name = "svalbard"
+version = "1.0.0"
 authors = ["Transmissions <greenfeatherhelp@gmail.com>"]
 edition = "2018"
-description = "Helps you keep track of how well you know each chapter in the Rust book."
+description = "📚 Keep track of how well you know the Rust Book! 📚"
 license = "MIT"
 repository = "https://github.com/svalbard-library/svalbard"
 

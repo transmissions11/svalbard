@@ -1,11 +1,11 @@
 use cursive::menu::MenuTree;
 use cursive::views::Dialog;
 use cursive::{Cursive, With};
-use rustacean_review::screens::{
+use svalbard::screens::{
     chapter_choice, recommend_review_screen, search_screen, summary_screen,
 };
-use rustacean_review::state::deserialize_state;
-use rustacean_review::{State, CHAPTERS};
+use svalbard::state::deserialize_state;
+use svalbard::{State, CHAPTERS};
 use std::collections::HashMap;
 
 #[macro_use]
