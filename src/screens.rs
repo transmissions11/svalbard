@@ -19,7 +19,7 @@ pub fn chapter_choice(cursive: &mut Cursive, chapter_num: usize) {
             }),
     )
 }
-/// Shows a screen
+
 pub fn review_chapter_screen(cursive: &mut Cursive, chapter_num: usize) {
     let mut select = SelectView::new();
     for i in 1..11 {
