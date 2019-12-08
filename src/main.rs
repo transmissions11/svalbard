@@ -2,7 +2,7 @@ use cursive::menu::MenuTree;
 use cursive::views::Dialog;
 use cursive::{Cursive, With};
 use rustacean_review::screens::{
-	chapter_choice, recommend_review_screen, search_screen, summary_screen,
+    chapter_choice, recommend_review_screen, search_screen, summary_screen,
 };
 use rustacean_review::state::deserialize_state;
 use rustacean_review::{State, CHAPTERS};
@@ -40,7 +40,6 @@ fn main() {
 
         cursive
             .menubar()
-            // We add a new "File" tree
             .add_subtree(
                 "Chapters",
                 MenuTree::new()
