@@ -88,9 +88,7 @@ pub fn recommend_review_screen(cursive: &mut Cursive) {
 
 pub fn study_resources_screen(cursive: &mut Cursive, chap_num: usize) {
     let recommended_chapter = &CHAPTERS[chap_num];
-    cursive.add_layer(Dialog::info(
-        recommended_chapter.chapter_resources_string(),
-    ));
+    cursive.add_layer(Dialog::info(recommended_chapter.chapter_resources_string()));
 }
 
 /// Shows a prompt where user can type in the name of a chapter. Will redirect user to `profiency_prompt()` if successful. Will not panic if no results are found, shows dialog instead.

@@ -65,10 +65,10 @@ fn main() {
                     ),
             )
             .add_delimiter()
-            .add_leaf("About", |s| {
-                s.add_layer(Dialog::info("A t11s project. First Rust project."))
+            .add_leaf("About", |cursive| {
+                cursive.add_layer(Dialog::info("A t11s project. First Rust project."))
             })
-            .add_leaf("Quit", |s| s.quit());
+            .add_leaf("Quit", |cursive| cursive.quit());
 
         cursive.set_autohide_menu(false);
 
