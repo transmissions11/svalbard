@@ -18,7 +18,7 @@ impl ChapterInfo {
     /// Used to get a human readable format of extra_info data associated with a ChapterInfo struct
     pub fn chapter_resources_string(&self) -> String {
         if self.extra_info.is_empty() {
-           String::from("Make sure to look at the Rust by Example online book for some examples!")
+            String::from("Make sure to look at the Rust by Example online book for some examples!")
         } else {
             format!("Check out these helpful resources:\n\n{}", self.extra_info)
         }
@@ -426,7 +426,7 @@ pub mod state;
 ///
 /// # Examples
 /// ```
-/// use rustacean_review::{CHAPTERS, find_chapter_index};
+/// use svalbard::{CHAPTERS, find_chapter_index};
 /// assert_eq!(Some(0), find_chapter_index("1. Getting Started", CHAPTERS));
 /// ```
 pub fn find_chapter_index(search_string: &str, chapters_list: [ChapterInfo; 97]) -> Option<usize> {
@@ -443,7 +443,7 @@ pub fn find_chapter_index(search_string: &str, chapters_list: [ChapterInfo; 97])
 ///
 /// # Examples
 /// ```
-/// use rustacean_review::{State, smallest_value_in_hashmap};
+/// use svalbard::{State, smallest_value_in_hashmap};
 /// use std::collections::HashMap;
 ///
 /// let mut hashmap_example = HashMap::new();
