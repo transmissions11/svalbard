@@ -1,6 +1,6 @@
 [package]
 name = "svalbard"
-version = "1.0.0"
+version = "1.0.1"
 authors = ["Transmissions <greenfeatherhelp@gmail.com>"]
 edition = "2018"
 description = "📚 Keep track of how well you know the Rust Book! 📚"
