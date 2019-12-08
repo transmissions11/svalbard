@@ -4,6 +4,7 @@ use crate::{find_chapter_index, smallest_value_in_hashmap, State, CHAPTERS};
 use cursive::traits::{Boxable, Scrollable};
 use cursive::views::{Dialog, EditView, SelectView};
 use cursive::Cursive;
+use std::ops::Add;
 
 /// Lets a user choice an action to perform on a given chapter: View study resources or review the chapter
 pub fn chapter_choice(cursive: &mut Cursive, chapter_num: usize) {
@@ -20,6 +21,7 @@ pub fn chapter_choice(cursive: &mut Cursive, chapter_num: usize) {
     )
 }
 
+/// Shows a screen where users can rate their confidence on a chapter
 pub fn review_chapter_screen(cursive: &mut Cursive, chapter_num: usize) {
     let mut select = SelectView::new();
     for i in 1..11 {
@@ -86,6 +88,7 @@ pub fn recommend_review_screen(cursive: &mut Cursive) {
     }
 }
 
+/// Shows a screen where users get extra info on a chapter that they can learn from
 pub fn study_resources_screen(cursive: &mut Cursive, chap_num: usize) {
     let recommended_chapter = &CHAPTERS[chap_num];
     cursive.add_layer(Dialog::info(recommended_chapter.chapter_resources_string()));
