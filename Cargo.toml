@@ -16,6 +16,6 @@ dirs = "2.0.2"
 serde = { version = "1.0", features = ["derive"] }
 
 [dependencies.cursive]
-version = "0.13"
+version = "0.14"
 default-features = false
 features = ["termion-backend"]
