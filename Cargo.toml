@@ -11,11 +11,11 @@ repository = "https://github.com/svalbard-library/svalbard"
 
 [dependencies]
 ferris_print = "0.1.0"
-serde_json = "1.0.41"
+serde_json = "1.0.52"
 dirs = "2.0.2"
 serde = { version = "1.0", features = ["derive"] }
 
 [dependencies.cursive]
-version = "0.13"
+version = "0.14"
 default-features = false
 features = ["termion-backend"]
