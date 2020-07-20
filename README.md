@@ -3,9 +3,13 @@
 
 ### Usage:
 
-```cargo install svalbard```
+```
+cargo install svalbard
+```
 
-```svalbard```
+```
+svalbard
+```
 
 ![](https://i.imgur.com/TXldYoE.png)
 
